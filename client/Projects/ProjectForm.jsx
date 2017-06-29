@@ -1,19 +1,14 @@
 import React, {Component} from 'react';
 
-export default class projectform extends Component {
+export default class ProjectForm extends Component {
 
 		addproject(event) {
 		event.preventDefault();
 		var text = this.refs.project.value.trim();
 
-		project.insert({
-			text: text,
-			complete: false,
-			createdAt: new Date()
-		})
-		this.refs.project.value = ''
-	}
-	
+		Meteor.call('addProject', text, ()=>{
+			this.refs.project.value = "";
+		})};
 	render() {
 		return (
 				<form className='new-project' onSubmit={this.addproject.bind(this)}>
@@ -22,6 +17,6 @@ export default class projectform extends Component {
 					ref='project'
 					placeholder='Finish React Meteor Series' />
 				</form>
-
 			)
-	}}
+	}
+}
