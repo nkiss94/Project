@@ -6,9 +6,10 @@ export default class ProjectForm extends Component {
 		event.preventDefault();
 		var text = this.refs.project.value.trim();
 
-		Meteor.call('addProject', text, ()=>{
+		Meteor.call('addproject', text, ()=>{
 			this.refs.project.value = "";
 		})};
+
 	render() {
 		return (
 				<form className='new-project' onSubmit={this.addproject.bind(this)}>
