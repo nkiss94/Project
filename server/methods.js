@@ -5,5 +5,14 @@ Meteor.methods({
 			complete: false,
 			createdAt: new Date()
 		});
+	},
+	toggleProject(id, status) {
+		project.update(id, {
+			$set: {complete: !status}
+		})
+	},
+
+	deleteProject(id) {
+		project.remove(id);
 	}
 });

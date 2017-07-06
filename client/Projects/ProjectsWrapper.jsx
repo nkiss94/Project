@@ -9,6 +9,20 @@ project = new Mongo.Collection('project')
 
 export default class ProjectsWrapper extends TrackerReact(React.Component) {
 
+	constructor() {
+		super();
+
+		this.state = {
+			subscription: {
+				project: Meteor.subscribe('allprojects')
+			}
+		}
+	}
+
+	componentWillUnmount() {
+		this.state.subscription.project.stop
+	}
+
 	projects() {
 		return project.find().fetch();
 	};
